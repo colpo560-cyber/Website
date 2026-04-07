@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pierandrea Rollo // Portfolio</title>
+  <meta name="description" content="Pierandrea Rollo - Crypto-native investment professional. 7+ years, $30M+ deployed across 80+ Web3 projects.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ============ BOOT SCREEN ============ -->
+  <div id="boot-screen">
+    <div class="boot-content">
+      <div id="boot-log"></div>
+      <div class="boot-skip">[ PRESS ANY KEY OR CLICK TO SKIP ]</div>
+    </div>
+  </div>
+
+  <!-- ============ BACKGROUND EFFECTS ============ -->
+  <canvas id="matrix-bg"></canvas>
+  <div id="scanlines"></div>
+  <div id="crt-flicker"></div>
+
+  <!-- ============ NAVIGATION ============ -->
+  <nav id="navbar" class="hidden">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">
+        <span class="logo-bracket">[</span>
+        <span class="logo-text">P:</span><span class="logo-slash">//</span>
+        <span class="logo-bracket">]</span>
+      </a>
+      <div class="nav-links">
+        <a href="#about" class="nav-link" data-cmd="./about"><span class="nav-prefix">$</span> about</a>
+        <a href="#experience" class="nav-link" data-cmd="./experience"><span class="nav-prefix">$</span> experience</a>
+        <a href="#investments" class="nav-link" data-cmd="./investments"><span class="nav-prefix">$</span> investments</a>
+        <a href="#skills" class="nav-link" data-cmd="./skills"><span class="nav-prefix">$</span> skills</a>
+        <a href="#blog" class="nav-link" data-cmd="./blog"><span class="nav-prefix">$</span> blog</a>
+      </div>
+      <button id="terminal-toggle" class="terminal-btn" title="Open Terminal (Ctrl+`)">
+        <span class="btn-icon">&gt;_</span>
+      </button>
+      <button id="nav-hamburger" class="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="mobile-menu">
+      <a href="#about" class="nav-link">$ about</a>
+      <a href="#experience" class="nav-link">$ experience</a>
+      <a href="#investments" class="nav-link">$ investments</a>
+      <a href="#skills" class="nav-link">$ skills</a>
+      <a href="#blog" class="nav-link">$ blog</a>
+    </div>
+  </nav>
+
+  <!-- ============ MAIN CONTENT ============ -->
+  <main id="main-content" class="hidden">
+
+    <!-- HERO -->
+    <section id="hero">
+      <div class="hero-content">
+        <div class="terminal-window hero-terminal">
+          <div class="terminal-bar">
+            <div class="terminal-dots">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+            </div>
+            <span class="terminal-title">pierandrea@portfolio:~</span>
+            <span class="terminal-minimize">&#9472;</span>
+          </div>
+          <div class="terminal-body">
+            <pre class="ascii-name" aria-label="Pierandrea"><span class="ascii-line">█▀█ █ █▀▀ █▀█ ▄▀█ █▄ █ █▀▄ █▀█ █▀▀ ▄▀█</span><span class="ascii-line">█▀▀ █ ██▄ █▀▄ █▀█ █ ▀█ █▄▀ █▀▄ ██▄ █▀█</span></pre>
+            <div class="hero-subtitle">
+              <span class="prompt-symbol">&gt;</span>
+              <span id="typed-subtitle" class="typed-text"></span>
+              <span class="cursor-blink">_</span>
+            </div>
+            <div class="hero-meta">
+              <span class="meta-item"><span class="meta-label">ROLE:</span> Investor &amp; Advisor</span>
+              <span class="meta-divider">|</span>
+              <span class="meta-item"><span class="meta-label">STATUS:</span> <span class="status-online">ONLINE</span></span>
+              <span class="meta-divider">|</span>
+              <span class="meta-item"><span class="meta-label">UPTIME:</span> <span id="uptime">calculating...</span></span>
+            </div>
+            <div class="hero-cta">
+              <a href="#about" class="cta-btn cta-primary">
+                <span class="cta-bracket">[</span> EXPLORE PORTFOLIO <span class="cta-bracket">]</span>
+              </a>
+              <button id="open-terminal" class="cta-btn cta-secondary">
+                <span class="cta-bracket">[</span> OPEN TERMINAL <span class="cta-bracket">]</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-indicator">
+        <span class="scroll-text">SCROLL DOWN</span>
+        <div class="scroll-arrow">&#x25BC;</div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-prompt">pierandrea@portfolio:~$</span>
+          <h2 class="section-title glitch-hover">cat whoami.txt</h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="about-grid">
+          <div class="terminal-window about-terminal reveal">
+            <div class="terminal-bar">
+              <div class="terminal-dots">
+                <span class="dot dot-red"></span>
+                <span class="dot dot-yellow"></span>
+                <span class="dot dot-green"></span>
+              </div>
+              <span class="terminal-title">whoami.txt</span>
+            </div>
+            <div class="terminal-body">
+              <p class="about-text">
+                <span class="code-comment">// Who am I</span><br><br>
+                Hey, I'm <span class="highlight-green">Pierandrea Rollo</span>.<br><br>
+                Crypto-native investment professional with <span class="highlight-cyan">7+ years</span>
+                deploying capital across <span class="highlight-cyan">80+ early-stage Web3 projects</span>.
+                Track record of managing a <span class="highlight-green">$30 mln fund</span>. Deep expertise in deal sourcing,
+                tokenomics evaluation, and portfolio construction.<br><br>
+                <span class="code-comment">// My approach</span><br><br>
+                I back founders building at the edge of what's possible &mdash; from
+                <span class="highlight-cyan">DeFi infrastructure</span> to
+                <span class="highlight-magenta">execution layers</span> and
+                <span class="highlight-amber">consumer crypto</span>.
+                On-chain data, thesis-driven investing, and hands-on advisory.
+              </p>
+            </div>
+          </div>
+          <div class="about-stats reveal">
+            <div class="stat-card">
+              <div class="stat-number" data-count="7">0</div>
+              <div class="stat-label">Years in Web3</div>
+              <div class="stat-bar"></div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number" data-count="80">0</div>
+              <div class="stat-label">Projects Funded</div>
+              <div class="stat-bar"></div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number" data-count="30">0</div>
+              <div class="stat-label">$M+ Deployed</div>
+              <div class="stat-bar"></div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number" data-count="300">0</div>
+              <div class="stat-label">Due Diligences</div>
+              <div class="stat-bar"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2 class="section-title glitch-hover">Experience</h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="timeline">
+
+          <div class="timeline-item reveal">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content terminal-window">
+              <div class="terminal-bar">
+                <div class="terminal-dots">
+                  <span class="dot dot-red"></span>
+                  <span class="dot dot-yellow"></span>
+                  <span class="dot dot-green"></span>
+                </div>
+                <span class="terminal-title">Nova Horizon</span>
+              </div>
+              <div class="terminal-body">
+                <div class="exp-header">
+                  <h3 class="exp-role">Co-Founder</h3>
+                  <span class="exp-date">[2024 - Present]</span>
+                </div>
+                <p class="exp-company"><span class="highlight-cyan">@ Nova Horizon</span></p>
+                <p class="exp-desc">
+                  Crypto-native advisory firm supporting early-stage founders.
+                  Structured and closed <span class="highlight-green">$7.5M+</span> in raises across seed and private rounds. Built proprietary deal-flow
+                  pipeline with <span class="highlight-green">100+ VC funds</span> and 30+ launchpads,
+                  generating consistent co-investment opportunities.
+                  GTM Advisor for multiple early-stage projects.
+                </p>
+                <div class="exp-tags">
+                  <span class="tag">Fundraising</span>
+                  <span class="tag">Advisory</span>
+                  <span class="tag">GTM Strategy</span>
+                  <span class="tag">Deal Flow</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item reveal">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content terminal-window">
+              <div class="terminal-bar">
+                <div class="terminal-dots">
+                  <span class="dot dot-red"></span>
+                  <span class="dot dot-yellow"></span>
+                  <span class="dot dot-green"></span>
+                </div>
+                <span class="terminal-title">ICONIUM B.V.</span>
+              </div>
+              <div class="terminal-body">
+                <div class="exp-header">
+                  <h3 class="exp-role">Investment Manager</h3>
+                  <span class="exp-date">[2020 - 2024]</span>
+                </div>
+                <p class="exp-company"><span class="highlight-cyan">@ ICONIUM B.V.</span></p>
+                <p class="exp-desc">
+                  Early-stage crypto fund focused on token investments.
+                  Led and executed the full portfolio exit, delivering an average
+                  <span class="highlight-green">18x return</span> to shareholders. Deployed
+                  <span class="highlight-green">~$30M</span> across 80+ early-stage projects,
+                  managing the full investment lifecycle from sourcing to exit.
+                  Built strategic LP relationships with Tier-1 funds including
+                  Pantera Capital and Blockchain.com Ventures. Designed yield-generating strategies
+                  (staking, lending, farming) producing ~$2M in passive income with zero principal losses.
+                  Mentored founders through Outlier Ventures and Draper Fund accelerators.
+                </p>
+                <div class="exp-tags">
+                  <span class="tag">Portfolio Mgmt</span>
+                  <span class="tag">DeFi</span>
+                  <span class="tag">LP Relations</span>
+                  <span class="tag">Yield Strategies</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item reveal">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content terminal-window">
+              <div class="terminal-bar">
+                <div class="terminal-dots">
+                  <span class="dot dot-red"></span>
+                  <span class="dot dot-yellow"></span>
+                  <span class="dot dot-green"></span>
+                </div>
+                <span class="terminal-title">ICONIUM B.V.</span>
+              </div>
+              <div class="terminal-body">
+                <div class="exp-header">
+                  <h3 class="exp-role">Business Analyst</h3>
+                  <span class="exp-date">[2018 - 2020]</span>
+                </div>
+                <p class="exp-company"><span class="highlight-cyan">@ ICONIUM B.V.</span></p>
+                <p class="exp-desc">
+                  Screened <span class="highlight-green">1,500+</span> inbound projects and completed
+                  <span class="highlight-green">300+</span> in-depth due diligences &mdash; team assessment,
+                  tokenomics modeling, business model validation, SAFT review.
+                  Built the firm's proprietary scouting database and delivered structured
+                  weekly portfolio reporting using on-chain and off-chain metrics
+                  (governance activity, roadmap tracking, treasury analysis).
+                </p>
+                <div class="exp-tags">
+                  <span class="tag">Due Diligence</span>
+                  <span class="tag">Research</span>
+                  <span class="tag">Tokenomics</span>
+                  <span class="tag">On-chain Data</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- INVESTMENTS -->
+    <section id="investments" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-prompt">pierandrea@portfolio:~$</span>
+          <h2 class="section-title glitch-hover">ls -la investments/</h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="investments-grid">
+
+          <div class="investment-card reveal">
+            <div class="card-glow"></div>
+            <div class="card-header">
+              <img src="assets/megaeth.png" alt="MegaETH" class="card-logo">
+              <div>
+                <h3 class="card-title">MegaETH</h3>
+                <span class="card-type">Angel Investment</span>
+              </div>
+              <span class="card-status status-active">ACTIVE</span>
+            </div>
+            <p class="card-desc">
+              Real-time blockchain. The first EVM-compatible chain capable of processing
+              100,000+ transactions per second with sub-millisecond latency.
+            </p>
+            <div class="card-tags">
+              <span class="tag">L2</span>
+              <span class="tag">Infrastructure</span>
+              <span class="tag">EVM</span>
+            </div>
+          </div>
+
+          <div class="investment-card reveal">
+            <div class="card-glow"></div>
+            <div class="card-header">
+              <img src="assets/opinion.png" alt="Opinion" class="card-logo">
+              <div>
+                <h3 class="card-title">Opinion</h3>
+                <span class="card-type">Angel Investment</span>
+              </div>
+              <span class="card-status status-active">ACTIVE</span>
+            </div>
+            <p class="card-desc">
+              Decentralized prediction and opinion market protocol. Enabling users
+              to trade on the outcome of real-world events with on-chain settlement.
+            </p>
+            <div class="card-tags">
+              <span class="tag">Prediction Markets</span>
+              <span class="tag">Consumer</span>
+            </div>
+          </div>
+
+          <div class="investment-card reveal">
+            <div class="card-glow"></div>
+            <div class="card-header">
+              <img src="assets/superform.png" alt="Superform" class="card-logo">
+              <div>
+                <h3 class="card-title">Superform</h3>
+                <span class="card-type">Angel Investment</span>
+              </div>
+              <span class="card-status status-active">ACTIVE</span>
+            </div>
+            <p class="card-desc">
+              Cross-chain DeFi yield marketplace. A unified interface to discover,
+              access, and manage yield opportunities across every chain and protocol.
+            </p>
+            <div class="card-tags">
+              <span class="tag">DeFi</span>
+              <span class="tag">Yield</span>
+              <span class="tag">Cross-chain</span>
+            </div>
+          </div>
+
+          <div class="investment-card reveal">
+            <div class="card-glow"></div>
+            <div class="card-header">
+              <img src="assets/nunchi.png" alt="Nunchi.Trade" class="card-logo">
+              <div>
+                <h3 class="card-title">Nunchi.Trade</h3>
+                <span class="card-type">Angel Investment</span>
+              </div>
+              <span class="card-status status-active">ACTIVE</span>
+            </div>
+            <p class="card-desc">
+              Next-generation trading infrastructure. Building smarter execution
+              tools for on-chain traders with a focus on speed and capital efficiency.
+            </p>
+            <div class="card-tags">
+              <span class="tag">Trading</span>
+              <span class="tag">Execution</span>
+              <span class="tag">DeFi</span>
+            </div>
+          </div>
+
+          <div class="investment-card reveal">
+            <div class="card-glow"></div>
+            <div class="card-header">
+              <img src="assets/ethos.png" alt="Ethos" class="card-logo">
+              <div>
+                <h3 class="card-title">Ethos</h3>
+                <span class="card-type">Angel Investment</span>
+              </div>
+              <span class="card-status status-active">ACTIVE</span>
+            </div>
+            <p class="card-desc">
+              On-chain reputation and credibility layer. Building the trust
+              infrastructure for Web3 identity, social, and financial applications.
+            </p>
+            <div class="card-tags">
+              <span class="tag">Identity</span>
+              <span class="tag">Reputation</span>
+              <span class="tag">Social</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-prompt">pierandrea@portfolio:~$</span>
+          <h2 class="section-title glitch-hover">./scan_skills.sh</h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="skills-grid">
+          <div class="skills-column reveal">
+            <h3 class="skills-category">
+              <span class="category-icon">&#9650;</span> INVESTMENT &amp; ANALYSIS
+            </h3>
+            <div class="skill-item">
+              <div class="skill-info">
+                <span class="skill-name">Deal Sourcing &amp; Due Diligence</span>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info">
+                <span class="skill-name">Portfolio Construction &amp; Fund Ops</span>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info">
+                <span class="skill-name">Tokenomics Modeling &amp; SAFT/SAFE</span>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info">
+                <span class="skill-name">On-chain Data Analysis</span>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info">
+                <span class="skill-name">LP Relations &amp; Fund Admin</span>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info">
+                <span class="skill-name">Thesis Development (DeFi, Infra, App)</span>
+              </div>
+            </div>
+          </div>
+          <div class="skills-column reveal">
+            <h3 class="skills-category">
+              <span class="category-icon">&#9670;</span> TECHNICAL STACK
+            </h3>
+            <div class="skill-item">
+              <div class="skill-info">
+                <span class="skill-name">SQL / PostgreSQL</span>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info">
+                <span class="skill-name">Python</span>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info">
+                <span class="skill-name">Solidity</span>
+              </div>
+            </div>
+
+            <h3 class="skills-category" style="margin-top: 2rem;">
+              <span class="category-icon">&#9654;</span> LANGUAGES
+            </h3>
+            <div class="skill-item">
+              <div class="skill-info">
+                <span class="skill-name">Italian</span>
+                <span class="skill-pct">Native</span>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info">
+                <span class="skill-name">English</span>
+                <span class="skill-pct">Fluent</span>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info">
+                <span class="skill-name">Spanish</span>
+                <span class="skill-pct">Fluent</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="skills-tools reveal">
+          <h3 class="skills-category">
+            <span class="category-icon">&#9881;</span> TOOLS &amp; PLATFORMS
+          </h3>
+          <div class="tools-grid">
+            <span class="tool-badge">Dune Analytics</span>
+            <span class="tool-badge">Nansen</span>
+            <span class="tool-badge">Covalent</span>
+            <span class="tool-badge">TradingView</span>
+            <span class="tool-badge">Etherscan</span>
+            <span class="tool-badge">DeBank</span>
+            <span class="tool-badge">Token Terminal</span>
+            <span class="tool-badge">Messari</span>
+            <span class="tool-badge">Notion</span>
+            <span class="tool-badge">Python</span>
+            <span class="tool-badge">PostgreSQL</span>
+            <span class="tool-badge">Hardhat</span>
+            <span class="tool-badge">MetaMask</span>
+            <span class="tool-badge">Safe (Multisig)</span>
+          </div>
+        </div>
+        <!-- EDUCATION -->
+        <div class="skills-tools reveal" style="margin-top: 2.5rem;">
+          <h3 class="skills-category">
+            <span class="category-icon">&#9670;</span> EDUCATION
+          </h3>
+          <div class="tools-grid">
+            <span class="tool-badge">BA Business Administration &mdash; Bocconi University (2014-2018)</span>
+            <span class="tool-badge">Blockchain Developer Program &mdash; ConsenSys Academy (2020-2021)</span>
+            <span class="tool-badge">Data Alchemist Program &mdash; Covalent (2022)</span>
+            <span class="tool-badge">Introduction to Agent Skills &mdash; Anthropic (2026)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOG -->
+    <section id="blog" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-prompt">pierandrea@portfolio:~$</span>
+          <h2 class="section-title glitch-hover">ls -lt blog/</h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="blog-grid">
+
+          <article class="blog-card reveal">
+            <div class="blog-card-inner terminal-window" style="border-color: var(--magenta-dim);">
+              <div class="terminal-bar">
+                <div class="terminal-dots">
+                  <span class="dot dot-red"></span>
+                  <span class="dot dot-yellow"></span>
+                  <span class="dot dot-green"></span>
+                </div>
+                <span class="terminal-title">post_008.md &mdash; NEW</span>
+              </div>
+              <div class="terminal-body">
+                <span class="blog-date">[2026-04-07]</span>
+                <h3 class="blog-title">Inside the $282M Drift Hack: A Full On-Chain Breakdown</h3>
+                <p class="blog-excerpt">
+                  Drift Protocol was drained of $282M in 12 minutes. No smart contract bug.
+                  I tracked every step on-chain: drain, swaps, bridges, and ~130K ETH on Ethereum...
+                </p>
+                <div class="blog-meta">
+                  <span class="blog-tag">#OnChain</span>
+                  <span class="blog-tag">#Security</span>
+                  <span class="blog-tag">#Solana</span>
+                  <span class="blog-tag">#Hack</span>
+                </div>
+                <a href="blog/drift-hack-analysis.html" class="blog-link">cat post_008.md &gt;&gt;</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="blog-card reveal">
+            <div class="blog-card-inner terminal-window" style="border-color: var(--magenta-dim);">
+              <div class="terminal-bar">
+                <div class="terminal-dots">
+                  <span class="dot dot-red"></span>
+                  <span class="dot dot-yellow"></span>
+                  <span class="dot dot-green"></span>
+                </div>
+                <span class="terminal-title">post_007.md</span>
+              </div>
+              <div class="terminal-body">
+                <span class="blog-date">[2026-04-07]</span>
+                <h3 class="blog-title">Megapot: "Community-Run Lottery" or Offshore Scratch Card?</h3>
+                <p class="blog-excerpt">
+                  I analyzed Megapot's verified smart contracts on Base.
+                  "100% to the community"? Actually, 30% goes to the house. Here's what I found...
+                </p>
+                <div class="blog-meta">
+                  <span class="blog-tag">#OnChain</span>
+                  <span class="blog-tag">#DeFi</span>
+                  <span class="blog-tag">#Analysis</span>
+                  <span class="blog-tag">#Gambling</span>
+                </div>
+                <a href="blog/megapot-analysis.html" class="blog-link">cat post_007.md &gt;&gt;</a>
+              </div>
+            </div>
+          </article>
+
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-prompt">pierandrea@portfolio:~$</span>
+          <h2 class="section-title glitch-hover">cat contact.sh</h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="contact-content reveal">
+          <div class="terminal-window contact-terminal">
+            <div class="terminal-bar">
+              <div class="terminal-dots">
+                <span class="dot dot-red"></span>
+                <span class="dot dot-yellow"></span>
+                <span class="dot dot-green"></span>
+              </div>
+              <span class="terminal-title">contact.sh</span>
+            </div>
+            <div class="terminal-body">
+              <p class="contact-intro">
+                <span class="code-comment">#!/bin/bash</span><br>
+                <span class="code-comment"># Want to collaborate? Let's talk.</span><br><br>
+                <span class="code-keyword">echo</span> <span class="highlight-green">"Connect with me:"</span>
+              </p>
+              <div class="contact-links">
+                <a href="https://www.linkedin.com/in/pierandrearollo/" target="_blank" class="contact-link">
+                  <span class="contact-icon">&#9654;</span>
+                  <span class="contact-label">LinkedIn</span>
+                  <span class="contact-value">linkedin.com/in/pierandrearollo</span>
+                </a>
+                <a href="https://t.me/pierandrear" target="_blank" class="contact-link">
+                  <span class="contact-icon">&#9656;</span>
+                  <span class="contact-label">Telegram</span>
+                  <span class="contact-value">@pierandrear</span>
+                </a>
+                <a href="mailto:pierandrearollo@proton.me" class="contact-link">
+                  <span class="contact-icon">&#9993;</span>
+                  <span class="contact-label">Email</span>
+                  <span class="contact-value">pierandrearollo@proton.me</span>
+                </a>
+              </div>
+              <p class="contact-footer">
+                <br><span class="code-comment"># EOF - Thanks for stopping by.</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer id="footer" class="hidden">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-left">
+          <span class="footer-logo">[P://]</span>
+          <span class="footer-copy">&copy; 2026 Pierandrea Rollo. All rights reserved.</span>
+        </div>
+        <div class="footer-right">
+          <span class="footer-status">
+            <span class="status-dot"></span>
+            System operational
+          </span>
+          <span class="footer-divider">|</span>
+          <span class="footer-build">Built with caffeine &amp;&amp; code</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ INTERACTIVE TERMINAL ============ -->
+  <div id="terminal-overlay" class="terminal-overlay">
+    <div class="interactive-terminal">
+      <div class="terminal-bar">
+        <div class="terminal-dots">
+          <span class="dot dot-red" id="terminal-close" title="Close (Esc)"></span>
+          <span class="dot dot-yellow"></span>
+          <span class="dot dot-green"></span>
+        </div>
+        <span class="terminal-title">pierandrea@portfolio:~ (interactive)</span>
+      </div>
+      <div class="terminal-body" id="terminal-output">
+        <div class="terminal-welcome">
+          <pre class="terminal-ascii">
+  _____ ______ ____  __  __ _____ _   _          _
+ |_   _|  ____|  _ \|  \/  |_   _| \ | |   /\  | |
+   | | | |__  | |_) | \  / | | | |  \| |  /  \ | |
+   | | |  __| |  _ &lt;| |\/| | | | | . ` | / /\ \| |
+   | | | |____| |_) | |  | |_| |_| |\  |/ ____ \ |____
+   |_| |______|____/|_|  |_|_____|_| \_/_/    \_\_____|
+          </pre>
+          <p>Welcome to Pierandrea's interactive terminal.</p>
+          <p>Type <span class="highlight-green">help</span> for available commands.</p>
+          <br>
+        </div>
+      </div>
+      <div class="terminal-input-line">
+        <span class="input-prompt">pierandrea@portfolio:~$</span>
+        <input type="text" id="terminal-input" class="terminal-input" autocomplete="off" spellcheck="false" autofocus>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

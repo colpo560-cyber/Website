@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Megapot Analysis | Pierandrea</title>
+  <meta name="description" content="On-chain analysis of Megapot's smart contracts on Base. Why their '100% to the community' claim doesn't hold up.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    /* Article-specific styles */
+    .article-container {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 6rem 2rem 4rem;
+      position: relative;
+      z-index: 1;
+    }
+    .article-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-dim);
+      font-size: 0.8rem;
+      margin-bottom: 2rem;
+      transition: var(--transition);
+    }
+    .article-back:hover { color: var(--green); }
+    .article-header {
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .article-tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+    .article-title {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--green);
+      text-shadow: var(--glow-green);
+      line-height: 1.4;
+      margin-bottom: 1rem;
+    }
+    .article-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      font-size: 0.75rem;
+      color: var(--text-dim);
+    }
+    .article-meta span { display: flex; align-items: center; gap: 0.3rem; }
+    .article-body h2 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--cyan);
+      margin: 2.5rem 0 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+      letter-spacing: 0.5px;
+    }
+    .article-body h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--amber);
+      margin: 2rem 0 0.8rem;
+    }
+    .article-body p {
+      font-size: 0.9rem;
+      line-height: 1.85;
+      color: var(--text-primary);
+      margin-bottom: 1.2rem;
+    }
+    .article-body strong {
+      color: var(--green);
+      font-weight: 600;
+    }
+    .article-body em {
+      color: var(--text-secondary);
+      font-style: italic;
+    }
+    .article-body ul, .article-body ol {
+      margin: 1rem 0 1.5rem 1.5rem;
+      font-size: 0.9rem;
+      line-height: 1.85;
+      color: var(--text-primary);
+    }
+    .article-body li {
+      margin-bottom: 0.5rem;
+    }
+    .article-body code {
+      background: rgba(0, 255, 65, 0.08);
+      border: 1px solid rgba(0, 255, 65, 0.15);
+      padding: 0.15rem 0.4rem;
+      border-radius: 3px;
+      font-size: 0.82rem;
+      color: var(--green);
+    }
+    .article-body blockquote {
+      border-left: 3px solid var(--magenta);
+      padding: 1rem 1.5rem;
+      margin: 1.5rem 0;
+      background: rgba(255, 0, 128, 0.04);
+      border-radius: 0 4px 4px 0;
+      font-style: italic;
+      color: var(--text-secondary);
+    }
+    .callout {
+      background: var(--bg-terminal);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--amber);
+      border-radius: 4px;
+      padding: 1.2rem 1.5rem;
+      margin: 1.5rem 0;
+    }
+    .callout-red {
+      border-left-color: var(--red);
+    }
+    .callout-green {
+      border-left-color: var(--green);
+    }
+    .callout p { margin-bottom: 0.5rem; }
+    .callout p:last-child { margin-bottom: 0; }
+    .stat-highlight {
+      display: inline-block;
+      background: rgba(0, 255, 65, 0.08);
+      border: 1px solid rgba(0, 255, 65, 0.2);
+      padding: 0.3rem 0.8rem;
+      border-radius: 3px;
+      font-weight: 600;
+      color: var(--green);
+      margin: 0.2rem 0;
+    }
+    .stat-highlight.red {
+      background: rgba(255, 51, 51, 0.08);
+      border-color: rgba(255, 51, 51, 0.2);
+      color: var(--red);
+    }
+    .stat-highlight.amber {
+      background: rgba(255, 184, 0, 0.08);
+      border-color: rgba(255, 184, 0, 0.2);
+      color: var(--amber);
+    }
+    .tldr-box {
+      background: var(--bg-terminal);
+      border: 1px solid var(--magenta-dim);
+      border-radius: 6px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+    }
+    .tldr-box h3 {
+      color: var(--magenta) !important;
+      margin-top: 0 !important;
+    }
+    .tldr-box ul {
+      list-style: none;
+      margin-left: 0 !important;
+    }
+    .tldr-box li::before {
+      content: '>';
+      color: var(--magenta);
+      margin-right: 0.5rem;
+      font-weight: 700;
+    }
+    .article-footer {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    .article-footer a {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      border: 1px solid var(--green-dim);
+      color: var(--green);
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      transition: var(--transition);
+    }
+    .article-footer a:hover {
+      background: rgba(0, 255, 65, 0.1);
+      box-shadow: var(--glow-green);
+    }
+    @media (max-width: 600px) {
+      .article-container { padding: 5rem 1.2rem 3rem; }
+      .article-title { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="matrix-bg"></canvas>
+  <div id="scanlines"></div>
+
+  <!-- NAV -->
+  <nav id="navbar" class="visible" style="opacity:1; pointer-events:all;">
+    <div class="nav-container">
+      <a href="../index.html#hero" class="nav-logo">
+        <span class="logo-bracket">[</span>
+        <span class="logo-text">P:</span><span class="logo-slash">//</span>
+        <span class="logo-bracket">]</span>
+      </a>
+      <div class="nav-links">
+        <a href="../index.html#about" class="nav-link"><span class="nav-prefix">$</span> about</a>
+        <a href="../index.html#experience" class="nav-link"><span class="nav-prefix">$</span> experience</a>
+        <a href="../index.html#investments" class="nav-link"><span class="nav-prefix">$</span> investments</a>
+        <a href="../index.html#skills" class="nav-link"><span class="nav-prefix">$</span> skills</a>
+        <a href="../index.html#blog" class="nav-link active"><span class="nav-prefix">$</span> blog</a>
+      </div>
+      <button id="nav-hamburger" class="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ARTICLE -->
+  <article class="article-container">
+
+    <a href="../index.html#blog" class="article-back">&larr; cd ../blog</a>
+
+    <header class="article-header">
+      <div class="article-tag-row">
+        <span class="blog-tag">#OnChain</span>
+        <span class="blog-tag">#DeFi</span>
+        <span class="blog-tag">#Analysis</span>
+        <span class="blog-tag">#Gambling</span>
+        <span class="blog-tag">#Base</span>
+      </div>
+      <h1 class="article-title">Megapot: "Community-Run Lottery" or Offshore Scratch Card?</h1>
+      <div class="article-meta">
+        <span><span class="highlight-green">Pierandrea</span></span>
+        <span>April 7, 2026</span>
+        <span>10 min read</span>
+        <span>Contract: <code>0x3bAe...42a2</code> on Base</span>
+      </div>
+    </header>
+
+    <div class="article-body">
+
+      <p>
+        <strong>@megapot</strong> markets itself as <em>"the first global, community-run internet lottery"</em>
+        where <em>"100% of ticket sales go back to the community."</em>
+        I analyzed their verified smart contracts on Base. Here's why their claims don't hold up.
+      </p>
+
+      <!-- 100% CLAIM -->
+      <h2>"100% goes back to the community"</h2>
+
+      <p>
+        Technically true &mdash; if you define "community" to include <strong>backers</strong>
+        (investors acting as the house, ~20%) and <strong>referrers</strong> (marketing affiliates, ~10%).
+        That's like Powerball claiming "100% goes to the community" by counting the lottery operator and the government.
+      </p>
+
+      <div class="callout callout-red">
+        <p>The only number that matters for players:</p>
+        <p><span class="stat-highlight red">Return to Player ~70%</span></p>
+        <p>For every dollar spent, you get back <strong>$0.70</strong> in prizes on average.
+        The remaining $0.30 goes to the house and affiliates.</p>
+      </div>
+
+      <!-- HOUSE EDGE -->
+      <h2>30% house edge: better than most lotteries, worse than everything else</h2>
+
+      <p>
+        Megapot has a house edge of ~30%. Let's put that in context against every major gambling product in the world.
+      </p>
+
+      <p>
+        Megapot's ~70% RTP puts it in the same bracket as scratch cards and Spain's El Gordo &mdash;
+        and better than most traditional lotteries (50-60% RTP). That part is true.
+      </p>
+
+      <p>
+        But here's what Megapot won't tell you: it's <span class="stat-highlight red">6x to 60x worse than any casino game</span>.
+        The worst slot machine in a Las Vegas casino gives you better odds than Megapot.
+        And unlike El Gordo &mdash; which is run by the Spanish government under strict regulatory oversight &mdash;
+        Megapot is operated by a private company in Belize with an Anjouan gaming license and zero governance mechanisms.
+      </p>
+
+      <blockquote>
+        The honest comparison for Megapot isn't casinos. It's scratch cards with a Belize address.
+      </blockquote>
+
+      <!-- 1 IN 4 -->
+      <h2>"1 in 4 tickets wins something"</h2>
+
+      <p>
+        Probably true as a number, but the lower tiers (2 numbers matched, bonusball only) have
+        <strong>0% allocation</strong> from the premium pool. "Winning" in those tiers means getting a free ticket.
+        It's the same trick scratch cards use: "you won!" often means you got your ticket price back. Or less.
+      </p>
+
+      <!-- DYNAMIC ODDS -->
+      <h2>Odds that get worse when the jackpot grows</h2>
+
+      <p>
+        The bonusball range is dynamic. When the prize pool grows and the jackpot becomes attractive,
+        the system automatically widens the range:
+      </p>
+
+      <ul>
+        <li><strong>Small pool</strong> (bonusball 1-15): jackpot odds <span class="stat-highlight">1 in 2,137,590</span></li>
+        <li><strong>Large pool</strong> (bonusball 1-25): jackpot odds <span class="stat-highlight red">1 in 3,562,650</span></li>
+      </ul>
+
+      <p>
+        The odds get <strong>67% worse</strong> precisely when the jackpot is worth playing for.
+        This mechanism exists explicitly to protect backer profitability.
+        It's not a bug, it's a feature &mdash; for the house.
+      </p>
+
+      <!-- COMMUNITY-RUN -->
+      <h2>"Community-run": marketing, not reality</h2>
+
+      <p>
+        From the on-chain contract analysis, a <strong>single owner</strong> can modify all economic parameters
+        with no timelock, no governance, no multisig, and no notice:
+      </p>
+
+      <ul>
+        <li><strong>House edge:</strong> from 5% up to 50%</li>
+        <li><strong>Referral fee:</strong> up to 25%</li>
+        <li><strong>Win share on prizes:</strong> up to 25%</li>
+        <li><strong>Protocol fee:</strong> up to 25% of LP profits</li>
+        <li><strong>Ticket price, game difficulty, prize formula:</strong> all modifiable</li>
+      </ul>
+
+      <p>
+        The owner can also replace the entire payout calculator contract and the randomness source.
+        Changes take effect from the next drawing.
+      </p>
+
+      <div class="callout callout-red">
+        <p>There is no DAO. There is no voting mechanism. There is no multisig.
+        The term "community-run" corresponds to <strong>zero governance mechanisms</strong> in the code.</p>
+      </div>
+
+      <!-- WORST CASE -->
+      <h2>Worst-case scenario: house edge up to 75%</h2>
+
+      <p>
+        Combining the maximum hardcoded caps in the contract:
+      </p>
+      <p>
+        <span class="stat-highlight red">LP edge at 50% + referral fee at 25% = 75%</span>
+        of the ticket wouldn't go to prizes.
+        The contract allows it. The owner can do it overnight. No notice required.
+      </p>
+
+      <!-- JURISDICTION -->
+      <h2>License and jurisdiction</h2>
+
+      <p>
+        Megapot operates under a license from the <strong>Anjouan Gaming Board</strong> (Comoros)
+        with a company registered in <strong>Belize</strong>. It geoblocks the US, UK, Canada, Australia,
+        France, Germany, and every major market with active gambling enforcement.
+        It operates where regulation is weakest.
+        This isn't transparency &mdash; it's regulatory arbitrage.
+      </p>
+
+      <!-- PARADOX -->
+      <h2>The paradox</h2>
+
+      <p>
+        Megapot has genuine merits: the code is on-chain and verifiable, the randomness is mathematically sound
+        (Pyth Network + Fisher-Yates shuffle + rejection sampling), and money flows are traceable.
+        This is genuinely better than a traditional opaque lottery.
+      </p>
+
+      <p>
+        But the governance is fully centralized. The code is transparent in execution, opaque in decision-making.
+        You can see how the money moves, but you can't influence who sets the rules.
+      </p>
+
+      <!-- TLDR -->
+      <div class="tldr-box">
+        <h3>TL;DR</h3>
+        <ul>
+          <li><strong>"100% to the community"</strong> = 70% RTP for players, the rest goes to the house and affiliates</li>
+          <li><strong>30% house edge</strong> = 6x worse than a slot machine</li>
+          <li><strong>Dynamic odds</strong> that get 67% worse when the jackpot grows</li>
+          <li><strong>Owner with unilateral power</strong> over all parameters, no governance</li>
+          <li><strong>Hidden penalty of ~8%</strong> on winnings for players without a referrer</li>
+          <li><strong>House edge can be raised to 75%</strong> with no notice</li>
+          <li><strong>Offshore license</strong>, selective geoblocking of regulated markets</li>
+          <li><strong>KYC for cashout</strong> &mdash; if you win, you need KYC to receive your prize</li>
+          <li><strong>Zero governance</strong>, despite the "community-run" claim</li>
+        </ul>
+        <p style="margin-top:1rem; font-size:0.8rem;">
+          All data is verifiable on-chain:
+          <code>0x3bAe643002069dBCbcd62B1A4eb4C4A397d042a2</code> on Base.
+        </p>
+      </div>
+
+      <!-- NOTE -->
+      <h2>A note</h2>
+
+      <p>
+        This article is not a hit piece on the project. The team is clearly talented &mdash;
+        <strong>@Patrick_Lung</strong> (ex Uniswap), <strong>@Bmwball56</strong> (ex Set Protocol),
+        <strong>@ChuckBergeron</strong> (PoolTogether co-founder) &mdash; and the backers are serious:
+        Dragonfly, Coinbase Ventures, Bankless Ventures, FanDuel and Betfair founders.
+        The smart contracts are audited three times over and the randomness implementation is solid.
+      </p>
+
+      <p>
+        The question isn't about quality. It's about relevance. PoolTogether was genuinely revolutionary &mdash;
+        it invented no-loss prize savings on-chain, a concept that didn't exist before.
+        Megapot is a lottery with a 30% house edge, an offshore license, and centralized control.
+        There's nothing wrong with building it, but it's hard to understand why a project like this
+        is getting this much attention in 2026. It's not pioneering anything.
+        It's a well-built version of something that already exists everywhere, with worse odds than a slot machine.
+      </p>
+
+    </div>
+
+    <footer class="article-footer">
+      <a href="../index.html#blog">&larr; [ BACK TO BLOG ] &rarr;</a>
+    </footer>
+
+  </article>
+
+  <!-- Minimal matrix rain for article page -->
+  <script>
+    const canvas = document.getElementById('matrix-bg');
+    const ctx = canvas.getContext('2d');
+    function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    resize();
+    window.addEventListener('resize', resize);
+    const chars = 'アイウエオカキクケコ0123456789ABCDEF';
+    const fs = 14;
+    let cols = Math.floor(canvas.width / fs);
+    let drops = Array(cols).fill(1);
+    function draw() {
+      ctx.fillStyle = 'rgba(10,10,15,0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#00ff41';
+      ctx.font = fs + 'px monospace';
+      for (let i = 0; i < drops.length; i++) {
+        ctx.fillText(chars[Math.floor(Math.random() * chars.length)], i * fs, drops[i] * fs);
+        if (drops[i] * fs > canvas.height && Math.random() > 0.975) drops[i] = 0;
+        drops[i]++;
+      }
+    }
+    setInterval(draw, 50);
+    window.addEventListener('resize', function () {
+      cols = Math.floor(canvas.width / fs);
+      drops = Array(cols).fill(1);
+    });
+  </script>
+
+</body>
+</html>
